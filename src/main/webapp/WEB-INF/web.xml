@@ -3,20 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <!-- context-param으로 AnnotationConfigWebApplicationContext 설정 -->
     <context-param>
         <param-name>contextClass</param-name>
         <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
     </context-param>
 
+    <!-- context-param으로 RootConfig 설정 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>com.nhnacademy.springmvc.config.RootConfig</param-value>
     </context-param>
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
+    <!-- dispathcerServlet 설정 -->
+    <!-- dispatcherServlet의 init-param으로 WebConfig 설정 -->
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -36,7 +37,13 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    
+
+    <!-- listener 설정 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- filter 설정 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -59,13 +66,13 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+
     <filter>
         <filter-name>httpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
         <async-supported>true</async-supported>
     </filter>
-    
+
     <filter-mapping>
         <filter-name>httpMethodFilter</filter-name>
         <url-pattern>/*</url-pattern>
